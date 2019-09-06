@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>P2P File Transfer</title>
+        <link rel="stylesheet" href="./css/bootstrap.css">
+        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./css/animate.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script type="text/javascript" src="./js/email.min.js"></script>
+        <script type="text/javascript">
+            (function(){
+                emailjs.init("user_HkMWGfpYmjqmnMglcaoSU");
+            })();
+        </script>
+    </head>
+    <script src="./js/peer.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/concate.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <body>
+        <div class="container">
+            <h2 class="text-center">P2P File Transfer</h2>
+            <hr>
+        </div>
+        <div id="test">
+            <div class="container">
+                <div id="myError" class="alert alert-danger" hidden></div>
+                <div id="mySuccess" class="alert alert-success" hidden></div>
+                <div class="col-md-8 animated fadeIn">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label><strong>Your ID:</strong></label>
+                            <input type="text" id="url-link" class="form-control" readonly><br>
+                        </div>
+                        <div class="col-md-6">
+                            <label for=""><strong>Receiver's ID:</strong></label>
+                            <input type="text" id="r-url-d" class="form-control"><br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" id="connect" onclick="Connect();" class="btn btn-block btn-md btn-primary">Connect</button><br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="file" id="myFile" class="form-control" multiple>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" id="send" onclick="SendMsg();" class="btn btn-md btn-success" disabled>Send</button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Email Peer ID</button><br>
+                        </div>
+                    </div><br><br>
+
+                    <div id="progress1"></div><br>
+
+                    <div id="myLoader" hidden="true">
+                        <div class="loader"></div>&nbsp;<span><h4><strong>Please Wait Until your file is being received from host...</strong></h4></span><br>
+                    </div>
+                    <div id="info"></div>
+                    <br>
+                    <div id="dwld-link"></div>
+                    <br><br>
+                    <!--<div id="audio-listen"></div>-->
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default animated slideInDown">
+                        <div class="panel-heading text-center"><strong>Connected User</strong></div>
+                        <div class="panel-body">
+                            <div id="cur-conn"><i>No Connected Users.</i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Send Peer ID</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="errorMsg" hidden>Please Enter a valid Email Address!</div>
+                <div class="alert alert-success" id="successMsg" hidden>Email Sent Successfully!</div>
+                <label><strong>Enter Recipient ID:</strong></label>
+                <input type="text" class="form-control" id="email"><br>
+                <button class="btn btn-md btn-warning" onclick="SendEmail();">Send Email</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Ok Got it!</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="error-page" hidden>
+            <img src="./images/sign-error-icon.png" style="position:absolute; left:25%; width:50%;">
+            <div class="container" style="position:absolute; top:53%;">
+                <h5 class="text-danger"><i class="fa fa-exclamation-triangle"></i>WEBRTC not supported in this browser!</h5>
+                <h6><i class="fa fa-exclamation-triangle"></i>&nbsp;Please try <strong>Chrome ( v38+ )</strong> or <strong>Mozilla Firefox ( v31+ )</strong> for better experience!</h6>
+            </div>
+        </div>
+        <footer>
+            <div class="container">
+            <div class="col-md-4 col-xs-4">
+            <a href="https://github.com/dhruvp-8/file-transfer" target="_blank"><img src="./images/github.svg" class="github"></a>
+            <a href="http://peerjs.com" target="_blank"><img src="./images/peerjs.png" class="peer"></a>
+            </div>
+            <div class="col-md-4 col-xs-4">
+            <h6 class="copyright"><strong>Copyright &copy; 2017 P2P File Transfer.</strong></h6>
+            </div>
+            <div class="col-md-4 col-xs-4">
+            <a href="https://webrtc.org" target="_blank"><img src="./images/webrtc.png" class="webrtc"></a>
+            </div>
+            </div>
+        </footer>
+        <script src="./js/index.js" charset="utf-8"></script>
+    </body>
+</html>
